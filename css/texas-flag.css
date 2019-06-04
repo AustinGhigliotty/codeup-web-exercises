@@ -1,0 +1,71 @@
+.star-five {
+    margin: 50px 0;
+    position: relative;
+    display: block;
+    color: white;
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid white;
+    border-left: 100px solid transparent;
+    transform: rotate(35deg) scale(1.5);
+    z-index: 3;
+    bottom: 5em;
+    left: 10%;
+}
+.star-five:before {
+    border-bottom: 80px solid white;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    position: absolute;
+    height: 0;
+    width: 0;
+    top: -45px;
+    left: -65px;
+    display: block;
+    content: '';
+    transform: rotate(-35deg);
+}
+.star-five:after {
+    position: absolute;
+    display: block;
+    color: white;
+    top: 3px;
+    left: -105px;
+    width: 0;
+    height: 0;
+    border-right: 100px solid transparent;
+    border-bottom: 70px solid white;
+    border-left: 100px solid transparent;
+    transform: rotate(-70deg);
+    content: '';
+    /*credit to https://css-tricks.com/the-shapes-of-css/*/
+}
+body {
+    background-color: rgb(176, 39, 53);
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+div.white {
+    width: 100%;
+    background-color: white;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: relative;
+    height: 25.65em;
+}
+div.blue {
+    width: 30%;
+    background-color: rgb(8, 41, 100);
+    height: 60em;
+    z-index: 2;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
