@@ -54,7 +54,7 @@ a {
 }
 .profile-image {
     position: absolute;
-    top: 235px;
+    top: 15.5em;
     z-index: 1;
 }
 .profile-form {
@@ -99,5 +99,28 @@ a {
     margin: 0 .5em;
 }
 .container {
-
+    margin-top: 2em;
+}
+.media {
+    width: 100%;
+    background-color: var(--light-bg);
+    border-bottom: 1px solid var(--separator-color);
+    padding: .5em;
+    overflow: auto;
+}
+.media-image {
+    max-width: 50px;
+    float: left;
+    margin-top: 1.33em;
+}
+.media-body {
+    float: left;
+    width: calc(100% - 50px);
+}
+.profile-items {
+    list-style: none;
+    padding: 0;
+}
+.profile-entry {
+    margin: .5em;
 }
