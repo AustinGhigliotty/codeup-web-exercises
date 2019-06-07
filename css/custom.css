@@ -1,0 +1,45 @@
+div.container {
+    margin: 0;
+    padding: 0;
+}
+.jumbotron {
+    width: 1048px;
+    height: 200px;
+    padding: 0;
+    background-image: url("../img/pizza.png");
+    background-size: cover;
+}
+h1 {
+    background-color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    position: relative;
+    top: calc(50% - calc(67px / 2));
+    margin: 0;
+}
+.form-check-input {
+    margin-left: 0;
+}
+label {
+    margin-left: 20px;
+}
+label.cheese-select {
+    margin-left: 0;
+}
+label.sauce-amount {
+    margin-left: 0;
+}
+label.sauce-select {
+    margin-left: 0;
+}
+div.card {
+    margin-bottom: 15px;
+}
+/*.search-button {*/
+/*    margin-right: 0;*/
+/*}*/
+div.container-fluid {
+    margin-left: 44px;
+    margin-right: 44px;
+}
+.container-fluid>div {
+}
