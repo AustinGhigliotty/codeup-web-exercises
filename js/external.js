@@ -13,3 +13,19 @@ var hoursGoogle = prompt("How many hours working for Google?");
 var hoursAmazon = prompt("How many hours working for Amazon?");
 alert("You will get paid $" + ((400 * hoursGoogle) + (350 * hoursFacebook) + (380 * hoursAmazon)));
 
+var classMax = prompt("What is the maximum number of students in the class?");
+confirm("Are there less than " + classMax + " students currently registered?");
+var classTime = prompt("When did this class start?");
+confirm("Are you available at " + classTime + " to take this class?");
+
+var itemsBought = prompt("How many items are you buying?");
+if (itemsBought > 2) {
+    var offerExpired = confirm("Has the product offer expired?");
+    if (offerExpired === true) {
+        alert("You're good to go!")
+    } else {
+        alert("You can't use an expired offer.")
+    }
+} else {
+    alert("You don't have enough items.")
+}
