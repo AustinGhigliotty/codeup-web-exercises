@@ -10,7 +10,7 @@
  * > sayHello("codeup") // returns "Hello, codeup!"
  */
 function sayHello(name) {
-    return "Hello, " + name
+    return "Hello, " + name;
 }
 
 /**
@@ -81,7 +81,7 @@ function calculateTip(percent,total) {
  */
 var totalBill = prompt("How much was your total?");
 var tipPercent = prompt("What percent would you like to tip?");
-alert("Your tip amount is $" + calculateTip(tipPercent,totalBill));
+alert("Your tip amount is $" + calculateTip(tipPercent,totalBill).toFixed(2));
 
 /**
  * TODO:
