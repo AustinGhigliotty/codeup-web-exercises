@@ -6,13 +6,13 @@
 </head>
 <body>
 <h1 id="header" class="top">Here's an h1</h1>
-<p id="paragraph" class="top">and a paragraph</p>
-<ul>
+<p id="paragraph" class="top codeup">and a paragraph</p>
+<ul class="codeup">
 	<li class="list-item">and a ul</li>
 	<li class="list-item">with some li's</li>
-	<li>(just a few)</li>
+	<li class="codeup">(just a few)</li>
 </ul>
-<div id="div">and this div thing</div>
+<div id="div" class="codeup">and this div thing</div>
 
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -20,10 +20,11 @@
 	$(document).ready(function() {
 	alert( 'The DOM has finished loading!' );
 	});
-    $('#paragraph').ready(function() {
-        var contents = $('#paragraph').html();
+    $('#header').ready(function() {
+        var contents = $('#header').html();
         alert(contents);
     });
+    $('.codeup').css('border', 'red 1px solid');
 </script>
 </body>
 </html>
