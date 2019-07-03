@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Konami Code</title>
+	<style>
+		#whimsicott {
+			 display: none;
+			 background-image: url("sandbox/whimsicott.png");
+			 background-size: 121px;
+			 background-repeat: no-repeat;
+			 height: 121px;
+			 width: 137px;
+		 }
+		#shiny-whimsicott {
+			display: none;
+			background-image: url("sandbox/shiny-whimsicott.png");
+			background-size: 121px;
+			background-repeat: no-repeat;
+			height: 121px;
+			width: 137px;
+		}
+		#spooky {
+			color: white;
+		}
+		body {
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	</style>
+</head>
+<body>
+<h1>Konami Code</h1>
+<p>Press space to restart the code</p>
+<div id="whimsicott"></div>
+<div id="shiny-whimsicott"></div>
+<p id="spooky">this thing is spooky now</p>
+
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+    "use strict";
+var code = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+var yay = [89, 65, 89];
+var invert = [73, 78, 86, 69, 82, 84];
+// var forest = [70, 79, 82, 69, 83, 84];
+var reset = [82, 69, 83, 69, 84];
+var shiny = [83, 72, 73, 78, 89];
+// var numberOfWhimsicotts = 0;
+var input = [];
+var whimsicott, inverted, shinyWhimsicott = false;
+    $(document).keyup(function(event){
+        console.log(event.keyCode);
+        input.push(event.keyCode);
+        if (event.keyCode === 32) {
+            input = [];
+		}
+        // if (whimsicott === true && inverted === true) {
+        //     $('#spooky').css('opacity', '100%');
+		// } else {
+        //     $('#spooky').css('opacity', '0');
+		// }
+		if (code.toString() === input.toString()) {
+		    alert("You have added 30 lives!");
+		    if (whimsicott === true || shinyWhimsicott === true) {
+		        alert("...and another Whimsicott")
+			}
+		    input = [];
+		} else if (yay.toString() === input.toString()) {
+		    if (whimsicott !== true) {
+                whimsicott = true;
+                shinyWhimsicott = false;
+                $('#whimsicott').css('display', 'block');
+                $('#shiny-whimsicott').css('display', 'none');
+                $('h1').text("Yay!");
+                if (inverted === true) {
+                    $('#spooky').css('color', 'black');
+                }
+            } else {
+                whimsicott = false;
+                $('#whimsicott').css('display', 'none');
+                $('h1').text("No more yay");
+                $('#spooky').css('color', 'white');
+			}
+            input = [];
+        } else if (invert.toString() === input.toString()) {
+            if (inverted !== true) {
+                inverted = true;
+                $('body').css('filter', 'invert(100%)').css('background-color', 'black');
+                $('').css('filter', 'invert(100%)').css('background-color', 'black');
+                if (whimsicott === true || shinyWhimsicott === true) {
+                    $('#spooky').css('color', 'black');
+                }
+            } else {
+                inverted = false;
+                $('body').css('filter', 'invert(0)').css('background-color', 'white');
+                $('').css('filter', 'invert(0)').css('background-color', 'white');
+                $('#spooky').css('color', 'white');
+            }
+            input = [];
+        } else if (shiny.toString() === input.toString()) {
+		    if (shinyWhimsicott !== true) {
+                if (whimsicott === true) {
+                    shinyWhimsicott = true;
+                    whimsicott = false;
+                    $('#whimsicott').css('display', 'none');
+                    $('#shiny-whimsicott').css('display', 'block');
+                    $('h1').text("Super yay!");
+                    if (inverted === true) {
+                        $('#spooky').css('color', 'black');
+                    }
+                } else {
+                    alert("You can't do that right now")
+                }
+                // yay > shiny > invert doesn't work
+				// yay > invert works
+				// yay > invert > shiny works
+				// yay > shiny > invert > shiny works
+            } else {
+                shinyWhimsicott = false;
+                whimsicott = true;
+                $('#whimsicott').css('display', 'block');
+                $('#shiny-whimsicott').css('display', 'none');
+                $('h1').text("Yay!");
+                if (inverted === true) {
+                    $('#spooky').css('color', 'black');
+                }
+			}
+			input = [];
+		}
+		// } else if (forest.toString() === input.toString()) {
+		//     forestbg = true;
+		//     $('body').css('background-image', 'url("sandbox/forest-bg.png")');
+		// 	input = [];
+		// }
+    });
+</script>
+</body>
+</html>
