@@ -2,9 +2,43 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Title</title>
+	<title>jQuery Attributes Exercise</title>
+	<style>
+		.invisible {
+			visibility: hidden;
+		}
+	</style>
 </head>
 <body>
-
+<h3>Toggle answers</h3>
+<dl>             <!-- 100% copy and pasted from https://space-facts.com/faq/ -->
+	<dt>Is Pluto a planet?</dt>
+	<dd>No, Pluto is a Dwarf Planet</dd>
+	<dt>Why is Pluto not a planet?</dt>
+	<dd>It does not meet the criteria set out by the IAU in 2006 to qualify as a planet.</dd>
+	<dt>How big is Pluto?</dt>
+	<dd>Pluto’s diameter is thought to be around 2,368 km.</dd>
+	<dt>When was Pluto discovered?</dt>
+	<dd>Pluto was discovered on the 18th of February 1930.</dd>
+	<dt>Who discovered Pluto?</dt>
+	<dd>Clyde W. Tombaugh discovered Pluto.</dd>
+	<dt>What is Pluto made of?</dt>
+	<dd>Pluto is roughly one third water ice and two thirds rocky material.</dd>
+	<dt>What colour is Pluto?</dt>
+	<dd>Pluto appears to be primarily brown.</dd>
+	<dt>How cold is Pluto?</dt>
+	<dd>The temperature on Pluto is between -233 to -223 degrees Celsius.</dd>
+	<dt>How many moons does Pluto have?</dt>
+	<dd>So far 5 have been discovered in orbit of Pluto; Charon, Nix, Hydra, Kerberos and Styx.</dd>
+	<dt>How many moons does Jupiter have?</dt>
+	<dd>79</dd>
+</dl>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script>
+	$('dd').addClass('invisible');
+    $("h3").click(function() {
+        $('dd').toggleClass("invisible");
+    });
+</script>
 </body>
 </html>
