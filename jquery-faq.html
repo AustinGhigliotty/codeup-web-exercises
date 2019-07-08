@@ -7,9 +7,13 @@
 		.invisible {
 			visibility: hidden;
 		}
+		ul {
+			display: none;
+		}
 	</style>
 </head>
 <body>
+<h1>Would you like to sign up for our newsletter? <span class="close">x</span></h1>
 <h4>Toggle answers</h4>
 <dl>             <!-- 100% copy and pasted from https://space-facts.com/faq/ -->
 	<dt>Is Pluto a planet?</dt>
@@ -57,6 +61,7 @@
 		<li>We have pieces of Mars here on Earth</li>
 	</ul>
 </div>
+<h2 class="signup"></h2>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
 	$('dd').addClass('invisible');
@@ -69,11 +74,15 @@
         });
     });
     $("h3").click(function() {
-		$(this).next().children().css('font-weight', 'bold');
+		$(this).next().slideToggle();
     });
     $("li").click(function() {
         $(this).parent().children().first().css('color', 'blue');
     });
+    $(".close").click(function() {
+        $(this).parent().hide();
+    });
+    $(".signup").fadeIn(options(start(800)));
 </script>
 </body>
 </html>
