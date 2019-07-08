@@ -10,7 +10,7 @@
 	</style>
 </head>
 <body>
-<h3>Toggle answers</h3>
+<h4>Toggle answers</h4>
 <dl>             <!-- 100% copy and pasted from https://space-facts.com/faq/ -->
 	<dt>Is Pluto a planet?</dt>
 	<dd>No, Pluto is a Dwarf Planet</dd>
@@ -33,11 +33,46 @@
 	<dt>How many moons does Jupiter have?</dt>
 	<dd>79</dd>
 </dl>
+<button id="highlighter">Highlight</button>
+<div class="list-div">
+	<h3>Mercury Facts</h3>
+	<ul>
+		<li>Mercury has water ice and organics</li>
+		<li>Mercury's magnetic field has different strength at each of its poles</li>
+		<li>Mercury has no moons or rings</li>
+		<li>A Mercury day takes double the time of a Mercury year</li>
+	</ul>
+	<h3>Jupiter Facts</h3>
+	<ul>
+		<li>One Jupiter day is 9 hours and 55 minutes</li>
+		<li>Jupiter's Great Red Spot is a storm that has been raging for over 300 years and can fit 2 Earths in it</li>
+		<li>There is an ultraviolet aurora on Jupiter</li>
+		<li>Jupiter is theorized to be a failed star</li>
+	</ul>
+	<h3>Mars Facts</h3>
+	<ul>
+		<li>Mars has frozen water on it</li>
+		<li>There is less surface gravity on Mars</li>
+		<li>Mars is home to the Olympus Mons, the tallest volcano on any planet, and the 4-mile deep Valles Marineris</li>
+		<li>We have pieces of Mars here on Earth</li>
+	</ul>
+</div>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 <script>
 	$('dd').addClass('invisible');
-    $("h3").click(function() {
+    $("h4").click(function() {
         $('dd').toggleClass("invisible");
+    });
+    $("#highlighter").click(function() {
+        $('ul').each(function () {
+            $(this).children().last().css('background-color', '#FF0');
+        });
+    });
+    $("h3").click(function() {
+		$(this).next().children().css('font-weight', 'bold');
+    });
+    $("li").click(function() {
+        $(this).parent().children().first().css('color', 'blue');
     });
 </script>
 </body>
