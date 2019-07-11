@@ -1,0 +1,22 @@
+body {
+    background-color: steelblue;
+}
+.weather-day {
+    background-color: #DDDDDD;
+    border: 1px solid black;
+}
+.weather-holder {
+    width: 95%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.bold {
+    font-weight: bold;
+}
+.title {
+    margin-left: 30px;
+}
+.subtitle {
+    margin-left: 20px;
+}

@@ -3,18 +3,36 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Weather Map</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/weather-map.css">
 </head>
 <body>
-<div id="weather">
+<h1 class="title">Weather</h1>
+<h2 class="subtitle">San Antonio</h2>
+<div class="weather-holder">
+	<div id="weather" class="row"></div>
 </div>
 <script src="js/keys.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/29.4241,-98.4936").done(function(data) {
         console.log(data);
-        var dateObject = new Date(data.currently.time * 1000);
-        console.log(dateObject);
-    });
+
+		for (var i = 0; i < 3; i++) {
+            $('#weather').append('<div class="weather-day col"><h2 class="temp">' + Math.round(data.daily.data[i].temperatureMax) +
+                '°/' + Math.round(data.daily.data[i].temperatureMin) + '°' + '</h2><p class="summary bold">' +
+                data.daily.data[i].summary + '</p><p class="humidity"><span class="bold">' + 'Humidity: ' + '</span>' + ((data.daily.data[i].humidity)*100) +
+                '</p><p class="wind"><span class="bold">' + 'Wind: ' + '</span>' + data.daily.data[i].windSpeed + '</p><p class="pressure"><span class="bold">' + 'Pressure: ' + '</span>' +
+                data.daily.data[i].pressure + '</p></div>');
+        }
+		});
+
+    	// $('#weather').append('<h2 class="temp">' + Math.round(data.daily.data[0].temperatureMax) +
+		// 	'°/' + Math.round(data.daily.data[0].temperatureMin) + '°' + '</h2><p class="summary">' +
+        //     data.daily.data[0].summary + '</p><p class="humidity">' + 'Humidity: ' + ((data.daily.data[0].humidity)*100) +
+		// 	'</p><p class="wind">' + 'Wind: ' + data.daily.data[0].windSpeed + '</p><p class="pressure">' + 'Pressure: ' +
+		// 	data.daily.data[0].pressure + '</p>');
+    // });
 </script>
 </body>
 </html>
