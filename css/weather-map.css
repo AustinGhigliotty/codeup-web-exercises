@@ -20,3 +20,10 @@ body {
 .subtitle {
     margin-left: 20px;
 }
+.icon {
+    width: 100px;
+    height: 100px;
+    background-image: url("../icon/clear-day.svg");
+    margin-left: auto;
+    margin-right: auto;
+}
