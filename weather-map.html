@@ -32,11 +32,11 @@
 
 		for (var i = 0; i < 3; i++) {
             $('#weather').append('<div class="weather-day col"><h2 class="temp">' + Math.round(data.daily.data[i].temperatureMax) +
-                '°/' + Math.round(data.daily.data[i].temperatureMin) + '°' + '</h2><div class="icon ' + data.daily.data[0].icon + '"></div><p class="summary bold">' +
+                '°/' + Math.round(data.daily.data[i].temperatureMin) + '°' + '</h2><div class="icon icon-' + i + ' ' + data.daily.data[i].icon + '"></div><p class="summary bold">' +
                 data.daily.data[i].summary + '</p><p class="humidity"><span class="bold">' + 'Humidity: ' + '</span>' + ((data.daily.data[i].humidity)*100) +
                 '</p><p class="wind"><span class="bold">' + 'Wind: ' + '</span>' + data.daily.data[i].windSpeed + '</p><p class="pressure"><span class="bold">' + 'Pressure: ' + '</span>' +
                 data.daily.data[i].pressure + '</p></div>');
-            $('.icon').css('background-image', 'url("icon/' + data.daily.data[0].icon + '.svg")');
+            $('.icon-' + i).css('background-image', 'url("icon/' + data.daily.data[i].icon + '.svg")');
         }
 		});
 
