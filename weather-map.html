@@ -12,6 +12,12 @@
 <div class="weather-holder">
 	<div id="weather" class="row"></div>
 </div>
+<label for="latitude">Latitude</label>
+<input id="latitude" type="text">
+<label for="longitude">Longitude</label>
+<input id="longitude" type="text">
+<button class="submit">Submit</button>
+
 <script src="js/keys.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
@@ -29,16 +35,30 @@
 	// ];
     $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/29.4241,-98.4936").done(function(data) {
         console.log(data);
-
+        makeWeathers(data);
+    });
+    $('.submit').on('click', function() {
+        var lat = $('#latitude').val();
+        var long = $('#longitude').val();
+		$.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/" + lat + "," + long).done(function(data) {
+        // $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/-20,170").done(function(data) {
+            makeWeathers(data);
+        console.log(data);
+    })
+	});
+    function makeWeathers(data) {
+        $('#weather').empty();
 		for (var i = 0; i < 3; i++) {
-            $('#weather').append('<div class="weather-day col"><h2 class="temp">' + Math.round(data.daily.data[i].temperatureMax) +
-                '°/' + Math.round(data.daily.data[i].temperatureMin) + '°' + '</h2><div class="icon icon-' + i + ' ' + data.daily.data[i].icon + '"></div><p class="summary bold">' +
-                data.daily.data[i].summary + '</p><p class="humidity"><span class="bold">' + 'Humidity: ' + '</span>' + ((data.daily.data[i].humidity)*100) +
-                '</p><p class="wind"><span class="bold">' + 'Wind: ' + '</span>' + data.daily.data[i].windSpeed + '</p><p class="pressure"><span class="bold">' + 'Pressure: ' + '</span>' +
+            $('#weather').append('<div class="weather-day col"><h2 class="temp">' +
+				Math.round(data.daily.data[i].temperatureMax) + '°/' + Math.round(data.daily.data[i].temperatureMin) + '°' +
+				'</h2><div class="icon icon-' + i + ' ' + data.daily.data[i].icon + '"></div><p class="summary bold">' +
+                data.daily.data[i].summary + '</p><p class="humidity"><span class="bold">' + 'Humidity: ' + '</span>' +
+				Math.round((data.daily.data[i].humidity)*100) + '</p><p class="wind"><span class="bold">' + 'Wind: ' +
+				'</span>' + data.daily.data[i].windSpeed + '</p><p class="pressure"><span class="bold">' + 'Pressure: ' + '</span>' +
                 data.daily.data[i].pressure + '</p></div>');
             $('.icon-' + i).css('background-image', 'url("icon/' + data.daily.data[i].icon + '.svg")');
         }
-		});
+    }
 
     	// $('#weather').append('<h2 class="temp">' + Math.round(data.daily.data[0].temperatureMax) +
 		// 	'°/' + Math.round(data.daily.data[0].temperatureMin) + '°' + '</h2><p class="summary">' +
