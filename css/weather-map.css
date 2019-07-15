@@ -17,7 +17,7 @@ body {
 .title {
     margin-left: 30px;
 }
-.subtitle {
+.location {
     margin-left: 20px;
 }
 .icon {
@@ -26,4 +26,7 @@ body {
     background-image: url("../icon/clear-day.svg");
     margin-left: auto;
     margin-right: auto;
+}
+#map {
+    height: 350px;
 }

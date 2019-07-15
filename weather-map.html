@@ -4,23 +4,70 @@
 	<meta charset="UTF-8">
 	<title>Weather Map</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.0/mapbox-gl.css' rel='stylesheet' />
 	<link rel="stylesheet" href="css/weather-map.css">
 </head>
 <body>
 <h1 class="title">Weather</h1>
-<h2 class="subtitle">San Antonio</h2>
+<h2 class="location">San Antonio</h2>
 <div class="weather-holder">
 	<div id="weather" class="row"></div>
 </div>
-<label for="latitude">Latitude</label>
-<input id="latitude" type="text">
-<label for="longitude">Longitude</label>
-<input id="longitude" type="text">
+<div id='map'></div>
+<!--<label for="latitude">Latitude</label>-->
+<!--<input id="latitude" type="text">-->
+<!--<label for="longitude">Longitude</label>-->
+<!--<input id="longitude" type="text">-->
 <button class="submit">Submit</button>
 
 <script src="js/keys.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script>
+<script src="js/mapbox-geocoder-utils.js"></script>
 <script>
+    mapboxgl.accessToken = mapboxToken;
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v9',
+        zoom: 15,
+        center: [-98.4916, 29.4252]
+    });
+    var marker = new mapboxgl.Marker({
+		draggable: true
+	})
+        .setLngLat([-98.4916, 29.4252])
+        .addTo(map);
+
+    // var long = marker.getLngLat().lng;
+    // var lat = marker.getLngLat().lat;
+    var lngLat = marker.getLngLat();
+    function onDragEnd() {
+        console.log(lngLat);
+        lngLat = marker.getLngLat();
+        console.log(lngLat);
+        // coordinates.style.display = 'block';
+        // long =  lngLat.lng;
+        // console.log(long);
+        // lat  =  lngLat.lat;
+        // console.log(lat);
+        reverseGeocode(lngLat, mapboxToken).then(function(results) {
+            console.log(results);
+            $('.location').text(results)
+        });
+    }
+
+    marker.on('dragend', onDragEnd);
+
+    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/29.4241,-98.4936").done(function(data) {
+        console.log(data);
+        makeWeathers(data);
+    });
+
+    reverseGeocode(lngLat, mapboxToken).then(function(results) {
+        // logs the address for The Alamo
+        console.log(results);
+    });
+
 	// var icons = [
 	// 	{weather: 'clear-day', icon: 'icon/clear-day.svg'},
 	// 	{weather: 'clear-night', icon: 'icon/clear-night.svg'},
@@ -33,19 +80,17 @@
 	// 	{weather: 'snow', icon: 'icon/snow.svg'},
 	// 	{weather: 'wind', icon: 'icon/wind.svg'}
 	// ];
-    $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/29.4241,-98.4936").done(function(data) {
-        console.log(data);
-        makeWeathers(data);
-    });
-    $('.submit').on('click', function() {
-        var lat = $('#latitude').val();
-        var long = $('#longitude').val();
-		$.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/" + lat + "," + long).done(function(data) {
-        // $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/-20,170").done(function(data) {
-            makeWeathers(data);
-        console.log(data);
-    })
-	});
+
+    // $('.submit').on('click', function() {
+    //     // var lat = $('#latitude').val();
+    //     // var long = $('#longitude').val();
+	// 	$.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/" + lat + "," + long).done(function(data) {
+    //     // $.get("https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/" + darkSkyKey +  "/-20,170").done(function(data) {
+    //         makeWeathers(data);
+    //     console.log(data);
+    // })
+	// });
+
     function makeWeathers(data) {
         $('#weather').empty();
 		for (var i = 0; i < 3; i++) {
